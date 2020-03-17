@@ -22,7 +22,7 @@ const Capstone = () => {
     return (
         // This return statement passes the hasUser, clearUser and setUser down to the child components as props
         <>
-        <NavBar hasUser={hasUser} clearUser={clearUser} />
+        {/* <NavBar hasUser={hasUser} clearUser={clearUser} /> */}
         <ApplicationViews hasUser={hasUser} setUser={setUser}/>
         </>
     )
