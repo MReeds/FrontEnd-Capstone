@@ -12,7 +12,7 @@
 /build
 
 # misc
-database.json
+/api
 .DS_Store
 .env.local
 .env.development.local
