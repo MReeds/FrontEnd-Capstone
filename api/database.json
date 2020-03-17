@@ -1,0 +1,33 @@
+// {
+//     "users": [
+//         {
+//             "id": ,
+//             "username": ,
+//             "email": 
+//         }
+//     ],
+//     "comments": [
+//         {
+//             "id": ,
+//             "userId": ,
+//             "verseId": ,
+//             "name": 
+//         }
+//     ],
+//     "verses": [
+//         {
+//             "id": ,
+//             "userId": ,
+//             "emotionId": ,
+//             "bookName": ,
+//             "chapter": ,
+//             "verseNumber": 
+//         }
+//     ],
+//     "emotions": [
+//         {
+//             "id": ,
+//             "name": 
+//         }
+//     ]
+// }

@@ -8,7 +8,7 @@ import Capstone from "./components/Capstone";
 
 ReactDOM.render(
   <Router>
-    <Capstone />
+    <Capstone/>
   </Router>,
   document.getElementById("root")
 );
