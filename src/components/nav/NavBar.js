@@ -32,6 +32,13 @@ const NavBar = props => {
               </Link>
             </li>
           )}
+          {props.hasUser ? (
+            <li>
+              <Link className="navLink" to="/verses">
+                Saved
+              </Link>
+            </li>
+          ) : null}
         </ul>
       </nav>
     </header>

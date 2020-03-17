@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import Home from "./Home/Home";
 import Login from "./auth/Login";
+import VerseList from "./verse/VerseList"
 
 const ApplicationViews = props => {
     // passing props to AV and declaring variable names equal to the props that were passed down from Capstone.js
@@ -20,6 +21,14 @@ const ApplicationViews = props => {
             exact path="/"
             render={props => {
                 return <Home />
+            }}
+            />
+            <Route 
+            path="/verses"
+            render={props => {
+                return hasUser ? (
+                    <VerseList {...props} /> 
+                ) : <Redirect to="/login"/>
             }}
             />
         </React.Fragment>
