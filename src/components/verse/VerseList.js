@@ -12,6 +12,7 @@ const VerseList = props => {
     });
   };
 
+
   useEffect(() => {
     getVerses();
   }, []);
@@ -24,14 +25,16 @@ const VerseList = props => {
             <VerseCard key={verse.id} verse={verse} {...props} />
           ))}
         </div>
+            </section>
         <div className="newVerseButton">
           <button
             type="button"
-            onClick={<VerseForm getVerses={getVerses} {...props} />}
+            onClick={() => {
+                props.history.push("/verses/new")
+            }}
           >New Verse
           </button>
         </div>
-      </section>
     </>
   );
 };

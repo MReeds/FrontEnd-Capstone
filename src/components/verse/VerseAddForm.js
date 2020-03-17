@@ -6,7 +6,7 @@ import VerseManager from "../../modules/VerseManager";
 const VerseForm = (props) => {
     // userId is set as equal to the id currently in session storage
     const userId = sessionStorage.getItem("id");
-    const [verse, setVerse] = useState({ userId: parseInt(userId), book: "", chapter: "", verseNumber: "" });
+    const [verse, setVerse] = useState({ userId: parseInt(userId), emotion: "", book: "", chapter: "", verseNumber: "" });
 
     const handleFieldChange = e => {
         const stateToChange = { ...verse };
@@ -18,9 +18,10 @@ const VerseForm = (props) => {
         // representation of the verse object that will be saved
         const newVerseObject = {
             userId: verse.userId,
-            book: verse.book,
+            emotionId: verse.emotionId,
+            bookName: verse.book,
             chapter: verse.chapter,
-            verse: verse.verseNumber
+            verseNumber: verse.verseNumber
         };
 
         // if a user doesnt write anything for the book or chapter field they will get an alert. If they do then it will post that entry and get all of them
