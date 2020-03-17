@@ -1,4 +1,4 @@
-const remoteUrl = "http://localhost:5000/";
+const remoteUrl = "http://localhost:5000";
 
 export default {
     get(id) {

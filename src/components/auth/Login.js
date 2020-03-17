@@ -30,7 +30,7 @@ const Login = props => {
 
     const handleRegister = e => {
         // UserManager gets all users from database and maps through to check if what the user has submitted for their username or email already exists in the database. If it exists they will get an alert
-        e.preventDefualt();
+        e.preventDefault();
         let valid = true;
         UserManager.getAll().then(users => {
             users.map(user => {
@@ -71,7 +71,7 @@ const Login = props => {
 
     const handleLogin = e => {
         // UserManager gets all users and maps through them to check if what the user input for username and email combination matches what is stored in the database. If so then they are directed to the home page. If not they are alerted that it is an incorrect combination
-        e.preventDefualt();
+        e.preventDefault();
         let valid = false;
         UserManager.getAll().then(users => {
             users.map(user => {
@@ -100,6 +100,7 @@ const Login = props => {
                     <input
                     onChange={handleFieldChange}
                     type="username"
+                    id="username"
                     placeholder="Username"
                     required=""
                     autoFocus=""
