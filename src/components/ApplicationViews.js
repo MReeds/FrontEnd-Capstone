@@ -32,14 +32,14 @@ const ApplicationViews = props => {
                 ) : <Redirect to="/login"/>
             }}
             />
-            <Route
+            {/* <Route
             exact path="/verses/new"
             render={props => {
                 return hasUser ? (
                     <VerseForm {...props}/>
                 ) : <Redirect to="/login"/>
             }}
-            />
+            /> */}
         </React.Fragment>
     )
 }

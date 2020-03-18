@@ -1,13 +1,18 @@
 import React from "react";
 
 const VerseCard = props => {
-    return (
-        <div className="verseCard">
-            <div className="verseContent">
-    <h3>{props.verse.bookName} {props.verse.chapter}:{props.verse.verseNumber}</h3>
-            </div>
-        </div>
-    )
-}
+  const loginId = sessionStorage.getItem("id");
+  const loginIdNum = parseInt(loginId);
 
-export default VerseCard
+  return loginIdNum === props.verse.userId ? (
+    <div className="verseCard">
+      <div className="verseContent">
+        <h3>
+          {props.verse.bookName} {props.verse.chapter}:{props.verse.verseNumber}
+        </h3>
+      </div>
+    </div>
+  ) : null;
+};
+
+export default VerseCard;

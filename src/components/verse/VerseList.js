@@ -4,6 +4,7 @@ import VerseManager from "../../modules/VerseManager";
 import VerseForm from "./VerseAddForm";
 
 const VerseList = props => {
+  
   const [verses, setVerses] = useState([]);
 
   const getVerses = () => {
@@ -11,7 +12,6 @@ const VerseList = props => {
       setVerses(versesFromAPI);
     });
   };
-
 
   useEffect(() => {
     getVerses();
@@ -21,20 +21,14 @@ const VerseList = props => {
     <>
       <section className="verseSectionContent">
         <div className="verseContainerCards">
-          {verses.map(verse => (
-            <VerseCard key={verse.id} verse={verse} {...props} />
-          ))}
+          {verses.map(verse =>
+              <VerseCard key={verse.id} verse={verse} {...props} />
+          )}
         </div>
-            </section>
-        <div className="newVerseButton">
-          <button
-            type="button"
-            onClick={() => {
-                props.history.push("/verses/new")
-            }}
-          >New Verse
-          </button>
-        </div>
+      </section>
+      <div className="VerseAddForm">
+        <VerseForm getVerses={getVerses} {...props} />
+      </div>
     </>
   );
 };
