@@ -25,6 +25,6 @@ export default {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(newVerse)
-    }).then(data => data.json())
+    }).then(data => data.json());
   }
-}
+};
