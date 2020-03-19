@@ -37,7 +37,7 @@ const VerseForm = props => {
     if (verse.bookName === "" || verse.chapter === "") {
       window.alert("Please enter a book and a chapter to record");
     } else {
-      VerseManager.post("verses", verse).then(props.getVerses).then();
+      VerseManager.post("verses", verse).then(props.getVerses);
         e.target.bookName.value = ""
         e.target.chapter.value = ""
         e.target.verseNumber.value = ""

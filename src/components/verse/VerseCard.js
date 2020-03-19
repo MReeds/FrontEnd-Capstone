@@ -8,7 +8,13 @@ const VerseCard = props => {
     <div className="verseCard">
       <div className="verseContent">
         <h3>
-          {props.verse.bookName} {props.verse.chapter}:{props.verse.verseNumber}
+          <span
+            className="cardTitle"
+            onClick={() => props.history.push(`verses/${props.verse.id}`)}
+          >
+            {props.verse.bookName} {props.verse.chapter}:
+            {props.verse.verseNumber}
+          </span>
         </h3>
       </div>
     </div>
