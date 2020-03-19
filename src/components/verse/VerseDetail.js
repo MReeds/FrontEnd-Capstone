@@ -14,6 +14,7 @@ const VerseDetail = props => {
   });
 
   useEffect(() => {
+    //   VerseManager get method is passed a resource and an id. So here im passing "verses" as the resource and using verseId thats passed down as a prop from Application Views
     VerseManager.get("verses", props.verseId).then(verse => {
       setVerse({
         userId: parseInt(userId),
@@ -27,6 +28,7 @@ const VerseDetail = props => {
   }, [props.verseId, userId]);
 
   const handleDelete = () => {
+    //   HandleDelete is passed a resource and an id similar to get and we pass in the same arguments
     setIsLoading(true);
     VerseManager.delete("verses", props.verseId).then(() => {
       props.history.push("/verses");
@@ -41,6 +43,9 @@ const VerseDetail = props => {
             {verse.bookName} {verse.chapter}:{verse.verseNumber}
           </span>
         </h3>
+        {/* <button type="button" disabled={isLoading} onClick={}>
+            Comment
+        </button> */}
         <button type="button" disabled={isLoading} onClick={handleDelete}>
           Delete
         </button>

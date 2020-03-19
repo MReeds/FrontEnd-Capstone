@@ -25,7 +25,7 @@ const VerseForm = props => {
   };
 
   const handleFieldChange = e => {
-    //   Setting 
+    //   Setting state each time a key stroke happens in the targetted id of a prop from verse
     const stateToChange = { ...verse };
     stateToChange[e.target.id] = e.target.value;
     setVerse(stateToChange);
@@ -38,6 +38,7 @@ const VerseForm = props => {
       window.alert("Please enter a book and a chapter to record");
     } else {
       VerseManager.post("verses", verse).then(props.getVerses);
+    //   Once manager posts new verse and gets the list again its resets the value of the text boxes to an empty string below
         e.target.bookName.value = ""
         e.target.chapter.value = ""
         e.target.verseNumber.value = ""
