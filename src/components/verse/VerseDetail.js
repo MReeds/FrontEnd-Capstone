@@ -28,7 +28,7 @@ const VerseDetail = props => {
 
   const handleDelete = () => {
     setIsLoading(true);
-    VerseManager.delete(props.verseId).then(() => {
+    VerseManager.delete("verses", props.verseId).then(() => {
       props.history.push("/verses");
     });
   };
