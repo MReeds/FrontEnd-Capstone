@@ -12,14 +12,14 @@
 const remoteUrl = "http://localhost:5000";
 
 export default {
-  get(id) {
-    return fetch(`${remoteUrl}/verses/${id}`).then(results => results.json());
+  get(resource, id) {
+    return fetch(`${remoteUrl}/${resource}/${id}`).then(results => results.json());
   },
-  getAll() {
-    return fetch(`${remoteUrl}/verses`).then(results => results.json());
+  getAll(resource) {
+    return fetch(`${remoteUrl}/${resource}`).then(results => results.json());
   },
-  post(newVerse) {
-    return fetch(`${remoteUrl}/verses?_expand=user`, {
+  post(resource, newVerse) {
+    return fetch(`${remoteUrl}/${resource}?_expand=user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

@@ -21,22 +21,11 @@ const VerseForm = props => {
   const GetEmotions = () => {
     return EmotionManager.getAll().then(emotionsFromAPI => {
       setEmotions(emotionsFromAPI);
-      console.log(emotionsFromAPI)
     });
   };
 
-  //   const [emotions] = useState([
-  //     { label: "Peaceful", value: 1 },
-  //     { label: "Thankful", value: 2 },
-  //     { label: "Angry", value: 3 },
-  //     { label: "Jealous", value: 4 },
-  //     { label: "Depressed", value: 5 },
-  //     { label: "Hurt", value: 6 },
-  //     { label: "Anxious", value: 7 },
-  //     { label: "Stressed", value: 8 }
-  //   ]);
-
   const handleFieldChange = e => {
+    //   Setting 
     const stateToChange = { ...verse };
     stateToChange[e.target.id] = e.target.value;
     setVerse(stateToChange);
@@ -48,7 +37,10 @@ const VerseForm = props => {
     if (verse.bookName === "" || verse.chapter === "") {
       window.alert("Please enter a book and a chapter to record");
     } else {
-      VerseManager.post(verse).then(props.getVerses);
+      VerseManager.post("verses", verse).then(props.getVerses).then();
+        e.target.bookName.value = ""
+        e.target.chapter.value = ""
+        e.target.verseNumber.value = ""
     }
   };
 
@@ -58,48 +50,54 @@ const VerseForm = props => {
 
   return (
     <>
-      <label htmlFor="emotion">How do you feel? </label>
-      <div className="formgrid">
-        <select>
+      <form onSubmit={createNewVerse}>
+        <label htmlFor="emotion">How do you feel? </label>
+        <div className="formgrid">
+          <select>
             {emotions.map(emotion => {
-               return <option key={emotion.id} id={emotion.id}>{emotion.name}</option>;
+              return (
+                <option key={emotion.id} id={emotion.id}>
+                  {emotion.name}
+                </option>
+              );
             })}
-        </select>
-      </div>
-      <label htmlFor="book">Book </label>
-      <div className="formgrid">
-        <input
-          type="text"
-          required
-          onChange={handleFieldChange}
-          id="bookName"
-          placeholder="Matthew, Mark, Luke"
-        />
-      </div>
-      <label htmlFor="chapter">Chapter </label>
-      <div className="formgrid">
-        <input
-          type="text"
-          required
-          onChange={handleFieldChange}
-          id="chapter"
-          placeholder="3, 15, 23"
-        />
-      </div>
-      <label htmlFor="verseNumber">Verse </label>
-      <div className="formgrid">
-        <input
-          type="text"
-          onChange={handleFieldChange}
-          id="verseNumber"
-          placeholder="1-4"
-        />
-      </div>
-      <div className="alignButton">
-        <button type="button" onClick={createNewVerse}>
-          Save Verse
-        </button>
-      </div>
+          </select>
+        </div>
+        <label htmlFor="book">Book </label>
+        <div className="formgrid">
+          <input
+            type="text"
+            required
+            onChange={handleFieldChange}
+            id="bookName"
+            placeholder="Matthew, Mark, Luke"
+          />
+        </div>
+        <label htmlFor="chapter">Chapter </label>
+        <div className="formgrid">
+          <input
+            type="text"
+            required
+            onChange={handleFieldChange}
+            id="chapter"
+            placeholder="3, 15, 23"
+          />
+        </div>
+        <label htmlFor="verseNumber">Verse </label>
+        <div className="formgrid">
+          <input
+            type="text"
+            onChange={handleFieldChange}
+            id="verseNumber"
+            placeholder="1-4"
+          />
+        </div>
+        <div className="alignButton">
+          <button type="submit">
+            Save Verse
+          </button>
+        </div>
+      </form>
     </>
   );
 };

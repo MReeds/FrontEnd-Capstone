@@ -8,7 +8,7 @@ const VerseList = props => {
   const [verses, setVerses] = useState([]);
 
   const getVerses = () => {
-    return VerseManager.getAll().then(versesFromAPI => {
+    return VerseManager.getAll("verses").then(versesFromAPI => {
       setVerses(versesFromAPI);
     });
   };
