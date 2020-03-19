@@ -18,6 +18,11 @@ export default {
   getAll(resource) {
     return fetch(`${remoteUrl}/${resource}`).then(results => results.json());
   },
+  delete(resource, verseId) {
+    return fetch(`${remoteUrl}/${resource}/${verseId}`, {
+      method: "DELETE"
+    }).then(data => data.json());
+  },
   post(resource, newVerse) {
     return fetch(`${remoteUrl}/${resource}?_expand=user`, {
       method: "POST",
