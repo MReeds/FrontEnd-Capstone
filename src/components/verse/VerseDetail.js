@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
 import VerseManager from "../../modules/VerseManager";
+import VerseEditForm from "./VerseEditForm";
 
 const VerseDetail = props => {
   const userId = sessionStorage.getItem("id");
 
   const [isLoading, setIsLoading] = useState(true);
+
+  const [isEdit, setIsEdit] = useState(false);
+
+  const onClickHandler = () => {
+    setIsEdit(true);
+  };
+
   const [verse, setVerse] = useState({
     userId: parseInt(userId),
     emotionId: "",
@@ -43,9 +51,9 @@ const VerseDetail = props => {
             {verse.bookName} {verse.chapter}:{verse.verseNumber}
           </span>
         </h3>
-        {/* <button type="button" disabled={isLoading} onClick={}>
-            Comment
-        </button> */}
+        <button type="button" disabled={isLoading} onClick={onClickHandler}>
+          Edit
+        </button>
         <button type="button" disabled={isLoading} onClick={handleDelete}>
           Delete
         </button>
@@ -53,12 +61,13 @@ const VerseDetail = props => {
           type="button"
           disabled={isLoading}
           onClick={() => props.history.push("/verses")}
-        >
+          >
           Go Back
         </button>
+          {isEdit ? <VerseEditForm {...props} /> : null}
       </div>
     </div>
   );
 };
 
-export default VerseDetail
+export default VerseDetail;
