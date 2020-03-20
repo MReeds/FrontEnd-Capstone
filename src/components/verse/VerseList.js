@@ -7,6 +7,12 @@ import VerseEditForm from "./VerseEditForm";
 const VerseList = props => {
   const [verses, setVerses] = useState([]);
 
+  const [isAdd, setIsAdd] = useState(false);
+
+  const onClickHandler = () => {
+    setIsAdd(true);
+  };
+
   const getVerses = () => {
     return VerseManager.getAll("verses").then(versesFromAPI => {
       setVerses(versesFromAPI);
@@ -40,7 +46,11 @@ const VerseList = props => {
         </div>
       </section>
       <div>
-      <VerseForm getVerses={getVerses} {...props}/>
+          <button type="button" 
+          onClick={onClickHandler}>
+              Add Verse
+          </button>
+          {isAdd ? <VerseForm getVerses={getVerses} {...props}/> : null}
       </div>
       {/* <div>
           <VerseEditForm getVerses={getVerses} {...props}/>

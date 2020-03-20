@@ -34,14 +34,18 @@ const VerseForm = props => {
   const createNewVerse = e => {
     e.preventDefault();
     // if a user doesnt write anything for the book or chapter field they will get an alert. If they do then it will post that entry and get all of them
-    if (verse.bookName === "" || verse.chapter === "") {
+    if (
+      verse.bookName === "" ||
+      verse.chapter === "" ||
+      verse.verseNumber === ""
+    ) {
       window.alert("Please enter a book and a chapter to record");
     } else {
       VerseManager.post("verses", verse).then(props.getVerses);
-    //   Once manager posts new verse and gets the list again its resets the value of the text boxes to an empty string below
-        e.target.bookName.value = ""
-        e.target.chapter.value = ""
-        e.target.verseNumber.value = ""
+      //   Once manager posts new verse and gets the list again its resets the value of the text boxes to an empty string below
+      e.target.bookName.value = "";
+      e.target.chapter.value = "";
+      e.target.verseNumber.value = "";
     }
   };
 
@@ -94,9 +98,7 @@ const VerseForm = props => {
           />
         </div>
         <div className="alignButton">
-          <button type="submit">
-            Save Verse
-          </button>
+          <button type="submit">Save Verse</button>
         </div>
       </form>
     </>

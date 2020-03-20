@@ -54,7 +54,6 @@ const VerseDetail = props => {
         <button type="button" disabled={isLoading} onClick={onClickHandler}>
           Edit
         </button>
-        {isEdit ? <VerseEditForm {...props} /> : null}
         <button type="button" disabled={isLoading} onClick={handleDelete}>
           Delete
         </button>
@@ -62,9 +61,10 @@ const VerseDetail = props => {
           type="button"
           disabled={isLoading}
           onClick={() => props.history.push("/verses")}
-        >
+          >
           Go Back
         </button>
+          {isEdit ? <VerseEditForm {...props} /> : null}
       </div>
     </div>
   );
