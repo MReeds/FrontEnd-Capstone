@@ -9,6 +9,7 @@ const VerseEditForm = props => {
     stateToChange[evt.target.id] = evt.target.value;
     setVerse(stateToChange);
   };
+  
 
   const updateVerse = e => {
     const userId = sessionStorage.getItem("id");

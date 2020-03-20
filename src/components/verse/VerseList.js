@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import VerseCard from "./VerseCard";
 import VerseManager from "../../modules/VerseManager";
 import VerseForm from "./VerseAddForm";
+import VerseEditForm from "./VerseEditForm";
 
 const VerseList = props => {
   const [verses, setVerses] = useState([]);
@@ -41,6 +42,9 @@ const VerseList = props => {
       <div>
       <VerseForm getVerses={getVerses} {...props}/>
       </div>
+      {/* <div>
+          <VerseEditForm getVerses={getVerses} {...props}/>
+      </div> */}
     </>
   );
 };

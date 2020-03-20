@@ -46,7 +46,7 @@ const ApplicationViews = props => {
           );
         }}
       />
-      <Route
+      {/* <Route
         path="/verses/:verseId(\d+)"
         render={props => {
           return hasUser ? (
@@ -55,7 +55,7 @@ const ApplicationViews = props => {
             <Redirect to="/login" />
           );
         }}
-      />
+      /> */}
     </React.Fragment>
   );
 };
