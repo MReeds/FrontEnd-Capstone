@@ -11,23 +11,21 @@ const VerseEditForm = props => {
   };
 
   const updateVerse = e => {
+    const userId = sessionStorage.getItem("id");
+
     const verseId = props.match.params.verseId;
     e.preventDefault();
 
     const editedVerse = {
       id: verseId,
+      userId: parseInt(userId),
       emotionId: verse.emotionId,
       bookName: verse.bookName,
       chapter: verse.chapter,
       verseNumber: verse.verseNumber
     };
 
-    VerseManager.update("verses", editedVerse).then(
-      VerseManager.get("verses", props.match.params.verseId).then(
-        setVerse(verse)
-      )
-    );
-    console.log(verse);
+    VerseManager.update("verses", editedVerse).then(props.getVerses).then(props.history.push("/verses"))
   };
 
   useEffect(() => {
