@@ -38,8 +38,8 @@ const VerseList = props => {
           ))}
         </div>
       </section>
-      <div className="VerseAddForm">
-        <VerseForm getVerses={getVerses} {...props} />
+      <div>
+      <VerseForm getVerses={getVerses} {...props}/>
       </div>
     </>
   );

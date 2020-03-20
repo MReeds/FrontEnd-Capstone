@@ -31,5 +31,14 @@ export default {
       },
       body: JSON.stringify(newVerse)
     }).then(data => data.json());
+  },
+  update(resource, editedVerse) {
+    return fetch(`${remoteUrl}/${resource}/${editedVerse.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(editedVerse)
+    }).then(data => data.json())
   }
 };
