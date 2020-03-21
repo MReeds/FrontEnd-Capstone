@@ -4,7 +4,6 @@ import Home from "./Home/Home";
 import Login from "./auth/Login";
 import VerseList from "./verse/VerseList";
 import VerseDetail from "./verse/VerseDetail";
-import VerseEditForm from "./verse/VerseEditForm";
 
 const ApplicationViews = props => {
   // passing props to AV and declaring variable names equal to the props that were passed down from Capstone.js

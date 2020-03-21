@@ -26,7 +26,7 @@ const VerseEditForm = props => {
       verseNumber: verse.verseNumber
     };
 
-    VerseManager.update("verses", editedVerse).then(props.getVerses).then(props.history.push("/verses"))
+    VerseManager.update("verses", editedVerse).then(props.history.push("/verses"))
   };
 
   useEffect(() => {

@@ -9,6 +9,8 @@ const VerseList = props => {
 
   const [isAdd, setIsAdd] = useState(false);
 
+  const [isEdit, setIsEdit] = useState(false);
+
   const onClickHandler = () => {
     setIsAdd(true);
   };
@@ -46,15 +48,14 @@ const VerseList = props => {
         </div>
       </section>
       <div>
-          <button type="button" 
-          onClick={onClickHandler}>
-              Add Verse
-          </button>
-          {isAdd ? <VerseForm getVerses={getVerses} {...props}/> : null}
+        <button type="button" onClick={onClickHandler}>
+          Add Verse
+        </button>
+        {isAdd ? <VerseForm getVerses={getVerses} {...props} /> : null}
       </div>
-      {/* <div>
-          <VerseEditForm getVerses={getVerses} {...props}/>
-      </div> */}
+      <div>
+        {isEdit ? <VerseEditForm getVerses={getVerses} {...props} /> : null}
+      </div>
     </>
   );
 };
