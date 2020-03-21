@@ -7,6 +7,7 @@ import VerseForm from "./VerseAddForm";
 const VerseList = props => {
   const [verses, setVerses] = useState([]);
   const [emotions, setEmotions] = useState([]);
+  const [emotion, setEmotion] = useState("");
   let [select, setSelect] = useState(false);
 
   const [isAdd, setIsAdd] = useState(false);
@@ -15,8 +16,9 @@ const VerseList = props => {
     setIsAdd(true);
   };
 
-  const onSelectHandler = () => {
+  const onSelectHandler = e => {
     setSelect(true);
+    setEmotion(e.target.value);
   };
 
   const GetEmotions = () => {
@@ -26,10 +28,11 @@ const VerseList = props => {
   };
 
   const getVerses = () => {
-    return VerseManager.getAll("verses").then(versesFromAPI => {
-      setVerses(versesFromAPI);
+    return VerseManager.getAll("verses").then(allVerses => {
+      const myEmotion = allVerses.filter(verse => emotion === verse.emotion);
+      setVerses(myEmotion);
     });
-};
+  };
 
   const handleFieldChange = e => {
     //   Setting state each time a key stroke happens in the targetted id of a prop from verse
@@ -37,10 +40,11 @@ const VerseList = props => {
     stateToChange[e.target.id] = e.target.value;
     setVerses(stateToChange);
   };
+  
   useEffect(() => {
     getVerses();
     GetEmotions();
-  }, []);
+  }, [emotion]);
 
   return (
     <>
@@ -58,7 +62,7 @@ const VerseList = props => {
       <section className="verseSectionContent">
         <div className="verseContainerCards">
           {verses.map(verse =>
-            select && emotions.name === verse.emotion ? (
+            select ? (
               <VerseCard key={verse.id} verse={verse} {...props} />
             ) : null
           )}

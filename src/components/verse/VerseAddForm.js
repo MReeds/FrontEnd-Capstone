@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from "react";
 import VerseManager from "../../modules/VerseManager";
-import EmotionManager from "../../modules/EmotionManager";
-
-// add a required emotion drop down selection to the add verse
 
 const VerseForm = props => {
   // userId is set as equal to the id currently in session storage
   const userId = sessionStorage.getItem("id");
+
 
   const [verse, setVerse] = useState({
     userId: parseInt(userId),
@@ -52,6 +50,7 @@ const VerseForm = props => {
         <div className="formgrid">
           <select
           id="emotion"
+          required
           onChange={handleFieldChange}>
             {props.emotions.map(emotion => {
               return (
