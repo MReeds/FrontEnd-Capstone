@@ -5,6 +5,7 @@ const VerseEditForm = props => {
   const [verse, setVerse] = useState({ editVerse: "" });
 
   const handleFieldChange = evt => {
+    //   sets stateToChange equal to the verse object in state. Then targetting the id associated with the objects prop and setting it equal to the value. Then setting the verse objects state
     const stateToChange = { ...verse };
     stateToChange[evt.target.id] = evt.target.value;
     setVerse(stateToChange);
