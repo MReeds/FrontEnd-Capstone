@@ -12,20 +12,26 @@ const VerseForm = props => {
 
   const [verse, setVerse] = useState({
     userId: parseInt(userId),
-    emotion: emotions.name,
+    emotion: "",
     bookName: "",
     chapter: "",
     verseNumber: ""
   });
 
   const GetEmotions = () => {
-    return EmotionManager.getAll().then(emotionsFromAPI => {
+      return EmotionManager.getAll().then(emotionsFromAPI => {
       setEmotions(emotionsFromAPI);
     });
   };
 
-  const handleFieldChange = e => {
-    //   Setting state each time a key stroke happens in the targetted id of a prop from verse
+//   const handleSelectFieldChange = e => {
+//       const selectStateChange = {...emotions};
+//       selectStateChange[e.target.id] = e.target.value;
+//       setEmotions(selectStateChange.emotion);
+//     }
+    
+    const handleFieldChange = e => {
+        //   Setting state each time a key stroke happens in the targetted id of a prop from verse
     const stateToChange = { ...verse };
     stateToChange[e.target.id] = e.target.value;
     setVerse(stateToChange);
@@ -58,7 +64,9 @@ const VerseForm = props => {
       <form onSubmit={createNewVerse}>
         <label htmlFor="emotion">How do you feel? </label>
         <div className="formgrid">
-          <select>
+          <select
+          id="emotion"
+          onChange={handleFieldChange}>
             {emotions.map(emotion => {
               return (
                 <option key={emotion.id} id={emotion.id}>
