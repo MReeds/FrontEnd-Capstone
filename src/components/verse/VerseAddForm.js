@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from "react";
 import VerseManager from "../../modules/VerseManager";
-import EmotionManager from "../../modules/EmotionManager";
-
-// add a required emotion drop down selection to the add verse
 
 const VerseForm = props => {
   // userId is set as equal to the id currently in session storage
   const userId = sessionStorage.getItem("id");
 
-  const [emotions, setEmotions] = useState([]);
 
   const [verse, setVerse] = useState({
     userId: parseInt(userId),
@@ -17,18 +13,6 @@ const VerseForm = props => {
     chapter: "",
     verseNumber: ""
   });
-
-  const GetEmotions = () => {
-      return EmotionManager.getAll().then(emotionsFromAPI => {
-      setEmotions(emotionsFromAPI);
-    });
-  };
-
-//   const handleSelectFieldChange = e => {
-//       const selectStateChange = {...emotions};
-//       selectStateChange[e.target.id] = e.target.value;
-//       setEmotions(selectStateChange.emotion);
-//     }
     
     const handleFieldChange = e => {
         //   Setting state each time a key stroke happens in the targetted id of a prop from verse
@@ -56,7 +40,7 @@ const VerseForm = props => {
   };
 
   useEffect(() => {
-    GetEmotions();
+    props.GetEmotions();
   }, []);
 
   return (
@@ -66,8 +50,9 @@ const VerseForm = props => {
         <div className="formgrid">
           <select
           id="emotion"
+          required
           onChange={handleFieldChange}>
-            {emotions.map(emotion => {
+            {props.emotions.map(emotion => {
               return (
                 <option key={emotion.id} id={emotion.id}>
                   {emotion.name}

@@ -15,7 +15,7 @@ const VerseDetail = props => {
 
   const [verse, setVerse] = useState({
     userId: parseInt(userId),
-    emotionId: "",
+    emotion: "",
     bookName: "",
     chapter: "",
     verseNumber: ""
@@ -26,7 +26,7 @@ const VerseDetail = props => {
     VerseManager.get("verses", props.verseId).then(verse => {
       setVerse({
         userId: parseInt(userId),
-        emotionId: verse.emotionId,
+        emotion: verse.emotion,
         bookName: verse.bookName,
         chapter: verse.chapter,
         verseNumber: verse.verseNumber
@@ -48,7 +48,7 @@ const VerseDetail = props => {
       <div className="cardContent">
         <h3>
           <span>
-            {verse.bookName} {verse.chapter}:{verse.verseNumber}
+          When I feel {verse.emotion}, I should read {verse.bookName} {verse.chapter}:{verse.verseNumber}
           </span>
         </h3>
         <button type="button" disabled={isLoading} onClick={onClickHandler}>
@@ -61,10 +61,10 @@ const VerseDetail = props => {
           type="button"
           disabled={isLoading}
           onClick={() => props.history.push("/verses")}
-          >
+        >
           Go Back
         </button>
-          {isEdit ? <VerseEditForm {...props} /> : null}
+        {isEdit ? <VerseEditForm {...props} /> : null}
       </div>
     </div>
   );
