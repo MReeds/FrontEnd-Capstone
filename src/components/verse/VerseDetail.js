@@ -25,8 +25,7 @@ const VerseDetail = props => {
 
   const GetComments = () => {
     return VerseManager.getWithComments("comments").then(AllComments => {
-      const VerseComments = AllComments.filter(comment => comment.verseId === verse.id )
-      setComments(VerseComments);
+      setComments(AllComments);
     });
   };
 
@@ -47,8 +46,8 @@ const VerseDetail = props => {
         bookName: verse.bookName,
         chapter: verse.chapter,
         verseNumber: verse.verseNumber,
-        verseComment: verse.verseComment
       });
+      GetComments();
       setIsLoading(false);
     });
   }, [props.verseId, userId]);
@@ -73,14 +72,15 @@ const VerseDetail = props => {
         <div className="commentContainerCards">
           <h4>
             {comments.map(comment => {
-              return (
+              return comment.verseId === props.verseId ? (
                 <CommentCard
+                  key={comment.id}
                   comment={comment}
                   verseId={props.verseId}
                   verse={verse}
                   {...props}
                 />
-              );
+              ) : null;
             })}
           </h4>
         </div>
@@ -105,7 +105,7 @@ const VerseDetail = props => {
           Go Back
         </button>
         {isComment ? (
-          <AddComment userId={userId} verse={verse} {...props} />
+          <AddComment userId={userId} GetComments={GetComments} verse={verse} {...props} />
         ) : null}
         {isEdit ? <VerseEditForm {...props} /> : null}
       </div>

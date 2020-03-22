@@ -5,18 +5,16 @@ const VerseForm = props => {
   // userId is set as equal to the id currently in session storage
   const userId = sessionStorage.getItem("id");
 
-
   const [verse, setVerse] = useState({
     userId: parseInt(userId),
     emotion: "",
     bookName: "",
     chapter: "",
-    verseNumber: "",
-    verseComment: ""
+    verseNumber: ""
   });
-    
-    const handleFieldChange = e => {
-        //   Setting state each time a key stroke happens in the targetted id of a prop from verse
+
+  const handleFieldChange = e => {
+    //   Setting state each time a key stroke happens in the targetted id of a prop from verse
     const stateToChange = { ...verse };
     stateToChange[e.target.id] = e.target.value;
     setVerse(stateToChange);
@@ -49,10 +47,7 @@ const VerseForm = props => {
       <form onSubmit={createNewVerse}>
         <label htmlFor="emotion">How do you feel? </label>
         <div className="formgrid">
-          <select
-          id="emotion"
-          required
-          onChange={handleFieldChange}>
+          <select id="emotion" required onChange={handleFieldChange}>
             {props.emotions.map(emotion => {
               return (
                 <option key={emotion.id} id={emotion.id}>

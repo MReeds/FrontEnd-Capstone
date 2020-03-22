@@ -18,9 +18,8 @@ const AddComment = props => {
   };
 
   const createNewComment = e => {
-      debugger;
       e.preventDefault();
-      VerseManager.post("comments", comment, "verse");
+      VerseManager.post("comments", comment, "verse").then(props.GetComments);
       e.target.comment.value = "";
   };
 

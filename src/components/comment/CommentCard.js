@@ -1,20 +1,19 @@
 import React from "react";
 
 const CommentCard = props => {
-const loginId = sessionStorage.getItem("id");
-const loginIdNum = parseInt(loginId);
-console.log(props.comment.comment)
+  const loginId = sessionStorage.getItem("id");
+  const loginIdNum = parseInt(loginId);
 
-return loginIdNum === props.verse.userId ? 
-<div className="commentCard">
-    <div className="commentContent">
+  return loginIdNum === props.verse.userId &&
+    props.comment.verseId === props.comment.verse.id ? (
+    <div className="commentCard">
+      <div className="commentContent">
         <h4>
-            <span className="cardTitle">
-                {props.comment.comment}
-            </span>
+          <span className="cardTitle">{props.comment.comment}</span>
         </h4>
+      </div>
     </div>
-</div> : null
+  ) : null;
 };
-  
-export default CommentCard
+
+export default CommentCard;
