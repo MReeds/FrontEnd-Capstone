@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import VerseManager from "../../modules/VerseManager";
 
-const AddComment = () => {
-    const userId = sessionStorage.getItem("id");
+const AddComment = props => {
+    const verseId = props.match.params.verseId
 
     const [comment, setComment] = useState({
-        userId: parseInt(userId),
+        userId: parseInt(props.userId),
+        verseId: parseInt(verseId),
         comment: ""
     });
 
@@ -17,8 +18,9 @@ const AddComment = () => {
   };
 
   const createNewComment = e => {
+      debugger;
       e.preventDefault();
-      VerseManager.post("comments", comment);
+      VerseManager.post("comments", comment, "verse");
       e.target.comment.value = "";
   };
 
@@ -27,12 +29,15 @@ const AddComment = () => {
       <form onSubmit={createNewComment}>
           <label htmlFor="comment"></label>
           <div className="formgrid">
-              <input
-              type="textarea"
+              <textarea
+              type="text"
               onChange={handleFieldChange}
               id="comment"
               placeholder="Notate your thoughts"
               />
+          </div>
+          <div className="alignButton">
+              <button type="submit">Add </button>
           </div>
       </form>
       </>
