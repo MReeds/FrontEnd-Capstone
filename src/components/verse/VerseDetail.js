@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import VerseManager from "../../modules/VerseManager";
 import VerseEditForm from "./VerseEditForm";
+import AddComment from "../comment/AddComment";
+import CommentCard from "../comment/CommentCard";
 
 const VerseDetail = props => {
   const userId = sessionStorage.getItem("id");
@@ -9,8 +11,22 @@ const VerseDetail = props => {
 
   const [isEdit, setIsEdit] = useState(false);
 
-  const onClickHandler = () => {
+  const [isComment, setIsComment] = useState(false);
+
+  const [comments, setComments] = useState([]);
+
+  const onClickEditHandler = () => {
     setIsEdit(true);
+  };
+
+  const onClickCommentHandler = () => {
+    setIsComment(true);
+  };
+
+  const GetComments = () => {
+    return VerseManager.getWithComments("comments").then(AllComments => {
+      setComments(AllComments);
+    });
   };
 
   const [verse, setVerse] = useState({
@@ -29,8 +45,9 @@ const VerseDetail = props => {
         emotion: verse.emotion,
         bookName: verse.bookName,
         chapter: verse.chapter,
-        verseNumber: verse.verseNumber
+        verseNumber: verse.verseNumber,
       });
+      GetComments();
       setIsLoading(false);
     });
   }, [props.verseId, userId]);
@@ -48,10 +65,33 @@ const VerseDetail = props => {
       <div className="cardContent">
         <h3>
           <span>
-          When I feel {verse.emotion}, I should read {verse.bookName} {verse.chapter}:{verse.verseNumber}
+            When I feel {verse.emotion}, I should read {verse.bookName}{" "}
+            {verse.chapter}:{verse.verseNumber}
           </span>
         </h3>
-        <button type="button" disabled={isLoading} onClick={onClickHandler}>
+        <div className="commentContainerCards">
+          <h4>
+            {comments.map(comment => {
+              return comment.verseId === props.verseId ? (
+                <CommentCard
+                  key={comment.id}
+                  comment={comment}
+                  verseId={props.verseId}
+                  verse={verse}
+                  {...props}
+                />
+              ) : null;
+            })}
+          </h4>
+        </div>
+        <button
+          type="button"
+          disabled={isLoading}
+          onClick={onClickCommentHandler}
+        >
+          Comment
+        </button>
+        <button type="button" disabled={isLoading} onClick={onClickEditHandler}>
           Edit
         </button>
         <button type="button" disabled={isLoading} onClick={handleDelete}>
@@ -64,6 +104,9 @@ const VerseDetail = props => {
         >
           Go Back
         </button>
+        {isComment ? (
+          <AddComment userId={userId} GetComments={GetComments} verse={verse} {...props} />
+        ) : null}
         {isEdit ? <VerseEditForm {...props} /> : null}
       </div>
     </div>

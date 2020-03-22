@@ -15,6 +15,9 @@ export default {
   get(resource, id) {
     return fetch(`${remoteUrl}/${resource}/${id}`).then(results => results.json());
   },
+  getWithComments(resource) {
+    return fetch(`${remoteUrl}/${resource}?_expand=verse`).then(results => results.json());
+  },
   getAll(resource) {
     return fetch(`${remoteUrl}/${resource}`).then(results => results.json());
   },
@@ -24,7 +27,7 @@ export default {
     }).then(data => data.json());
   },
   post(resource, newVerse) {
-    return fetch(`${remoteUrl}/${resource}?_expand=user`, {
+    return fetch(`${remoteUrl}/${resource}?_expand=${resource}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
