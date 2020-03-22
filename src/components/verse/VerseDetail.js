@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import VerseManager from "../../modules/VerseManager";
 import VerseEditForm from "./VerseEditForm";
+import AddComment from "../comment/addComment";
 
 const VerseDetail = props => {
   const userId = sessionStorage.getItem("id");
@@ -9,9 +10,15 @@ const VerseDetail = props => {
 
   const [isEdit, setIsEdit] = useState(false);
 
-  const onClickHandler = () => {
+  const [isComment, setIsComment] = useState(false);
+
+  const onClickEditHandler = () => {
     setIsEdit(true);
   };
+
+  const onClickCommentHandler = () => {
+    setIsComment(true);
+  }
 
   const [verse, setVerse] = useState({
     userId: parseInt(userId),
@@ -51,7 +58,11 @@ const VerseDetail = props => {
           When I feel {verse.emotion}, I should read {verse.bookName} {verse.chapter}:{verse.verseNumber}
           </span>
         </h3>
-        <button type="button" disabled={isLoading} onClick={onClickHandler}>
+        <button type="button"
+        disabled={isLoading} onClick={onClickCommentHandler}>
+          Comment
+        </button>
+        <button type="button" disabled={isLoading} onClick={onClickEditHandler}>
           Edit
         </button>
         <button type="button" disabled={isLoading} onClick={handleDelete}>
@@ -64,6 +75,7 @@ const VerseDetail = props => {
         >
           Go Back
         </button>
+        {isComment ? <AddComment {...props}/> : null}
         {isEdit ? <VerseEditForm {...props} /> : null}
       </div>
     </div>

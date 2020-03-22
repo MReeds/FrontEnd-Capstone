@@ -48,6 +48,7 @@ const VerseList = props => {
 
   return (
     <>
+          <h3>How do you feel today?</h3>
       <div>
         <select onChange={(handleFieldChange, onSelectHandler)}>
           {emotions.map(emotion => {
