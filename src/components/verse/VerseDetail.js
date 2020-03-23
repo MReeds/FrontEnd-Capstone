@@ -45,7 +45,7 @@ const VerseDetail = props => {
         emotion: verse.emotion,
         bookName: verse.bookName,
         chapter: verse.chapter,
-        verseNumber: verse.verseNumber,
+        verseNumber: verse.verseNumber
       });
       GetComments();
       setIsLoading(false);
@@ -69,21 +69,6 @@ const VerseDetail = props => {
             {verse.chapter}:{verse.verseNumber}
           </span>
         </h3>
-        <div className="commentContainerCards">
-          <h4>
-            {comments.map(comment => {
-              return comment.verseId === props.verseId ? (
-                <CommentCard
-                  key={comment.id}
-                  comment={comment}
-                  verseId={props.verseId}
-                  verse={verse}
-                  {...props}
-                />
-              ) : null;
-            })}
-          </h4>
-        </div>
         <button
           type="button"
           disabled={isLoading}
@@ -104,10 +89,31 @@ const VerseDetail = props => {
         >
           Go Back
         </button>
-        {isComment ? (
-          <AddComment userId={userId} GetComments={GetComments} verse={verse} {...props} />
-        ) : null}
         {isEdit ? <VerseEditForm {...props} /> : null}
+        <div className="commentContainerCards">
+          <h4>
+            {comments.map(comment => {
+              return comment.verseId === props.verseId ? (
+                <CommentCard
+                  key={comment.id}
+                  comment={comment}
+                  GetComments={GetComments}
+                  verseId={props.verseId}
+                  verse={verse}
+                  {...props}
+                />
+              ) : null;
+            })}
+          </h4>
+        </div>
+        {isComment ? (
+          <AddComment
+            userId={userId}
+            GetComments={GetComments}
+            verse={verse}
+            {...props}
+          />
+        ) : null}
       </div>
     </div>
   );
