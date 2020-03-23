@@ -18,6 +18,9 @@ const CommentCard = props => {
           <span className="cardTitle">{props.comment.comment}</span>
         </h4>
       </div>
+      <button type="button" onClick={props.editCommentOnClick()}>
+          Edit
+      </button>
       <button type="button" onClick={DeleteComments}>
         Delete
       </button>

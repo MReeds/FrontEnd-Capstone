@@ -3,6 +3,7 @@ import VerseManager from "../../modules/VerseManager";
 import VerseEditForm from "./VerseEditForm";
 import AddComment from "../comment/AddComment";
 import CommentCard from "../comment/CommentCard";
+import EditComment from "../comment/EditComment";
 
 const VerseDetail = props => {
   const userId = sessionStorage.getItem("id");
@@ -10,6 +11,8 @@ const VerseDetail = props => {
   const [isLoading, setIsLoading] = useState(true);
 
   const [isEdit, setIsEdit] = useState(false);
+
+  const [isEditComment, setIsEditComment] = useState(false);
 
   const [isComment, setIsComment] = useState(false);
 
@@ -21,6 +24,10 @@ const VerseDetail = props => {
 
   const onClickCommentHandler = () => {
     setIsComment(true);
+  };
+
+  const editCommentOnClick = () => {
+    setIsEditComment(true);
   };
 
   const GetComments = () => {
@@ -98,6 +105,7 @@ const VerseDetail = props => {
                   key={comment.id}
                   comment={comment}
                   GetComments={GetComments}
+                  editCommentOnClick={editCommentOnClick}
                   verseId={props.verseId}
                   verse={verse}
                   {...props}
@@ -114,6 +122,9 @@ const VerseDetail = props => {
             {...props}
           />
         ) : null}
+        {comments.map(comment => {
+          return isEditComment ? <EditComment comment={comment} {...props}/> : null
+        })}
       </div>
     </div>
   );
