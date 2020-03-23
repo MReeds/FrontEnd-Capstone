@@ -7,7 +7,7 @@ const VerseForm = props => {
 
   const [verse, setVerse] = useState({
     userId: parseInt(userId),
-    emotion: "",
+    emotion: "Peaceful",
     bookName: "",
     chapter: "",
     verseNumber: ""

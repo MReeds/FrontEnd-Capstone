@@ -20,12 +20,12 @@ const VerseEditForm = props => {
 };
 
   const updateVerse = e => {
+    e.preventDefault();
+
     const userId = sessionStorage.getItem("id");
 
-    const verseId = props.match.params.verseId;
-    e.preventDefault();
     const editedVerse = {
-      id: verseId,
+      id: props.verseId,
       userId: parseInt(userId),
       emotion: verse.emotion,
       bookName: verse.bookName,
@@ -33,11 +33,14 @@ const VerseEditForm = props => {
       verseNumber: verse.verseNumber
     };
 
-    VerseManager.update("verses", editedVerse).then(props.history.push("/verses"))
+    VerseManager.update("verses", editedVerse).then(() => {
+      props.GetVerse();
+      props.onClickEditHandler();
+    })
   };
 
   useEffect(() => {
-      VerseManager.get("verses", props.match.params.verseId).then(verse => {
+      VerseManager.get("verses", props.verseId).then(verse => {
           setVerse(verse);
           GetEmotions();
     });

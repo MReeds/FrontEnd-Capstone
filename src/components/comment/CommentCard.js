@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import VerseManager from "../../modules/VerseManager";
 import CommentEditForm from "./EditComment";
 
