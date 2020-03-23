@@ -11,16 +11,22 @@ const VerseDetail = props => {
 
   const [isEdit, setIsEdit] = useState(false);
 
+  const [isEditComment, setIsEditComment] = useState(false);
+
   const [isComment, setIsComment] = useState(false);
 
   const [comments, setComments] = useState([]);
 
   const onClickEditHandler = () => {
-    setIsEdit(true);
+    setIsEdit(!isEdit);
   };
 
   const onClickCommentHandler = () => {
-    setIsComment(true);
+    setIsComment(!isComment);
+  };
+
+  const editCommentOnClick = () => {
+    setIsEditComment(true);
   };
 
   const GetComments = () => {
@@ -98,6 +104,7 @@ const VerseDetail = props => {
                   key={comment.id}
                   comment={comment}
                   GetComments={GetComments}
+                  editCommentOnClick={editCommentOnClick}
                   verseId={props.verseId}
                   verse={verse}
                   {...props}
