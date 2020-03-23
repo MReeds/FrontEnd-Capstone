@@ -11,7 +11,7 @@ const VerseDetail = props => {
 
   const [isEdit, setIsEdit] = useState(false);
 
-  const [isEditComment, setIsEditComment] = useState(false);
+  const [setIsEditComment] = useState(false);
 
   const [isComment, setIsComment] = useState(false);
 
@@ -35,6 +35,18 @@ const VerseDetail = props => {
     });
   };
 
+  const GetVerse = () => {
+    VerseManager.get("verses", props.verseId).then(verse => {
+      setVerse({
+        userId: parseInt(userId),
+        emotion: verse.emotion,
+        bookName: verse.bookName,
+        chapter: verse.chapter,
+        verseNumber: verse.verseNumber
+      });
+    });
+  };
+
   const [verse, setVerse] = useState({
     userId: parseInt(userId),
     emotion: "",
@@ -45,17 +57,9 @@ const VerseDetail = props => {
 
   useEffect(() => {
     //   VerseManager get method is passed a resource and an id. So here im passing "verses" as the resource and using verseId thats passed down as a prop from Application Views
-    VerseManager.get("verses", props.verseId).then(verse => {
-      setVerse({
-        userId: parseInt(userId),
-        emotion: verse.emotion,
-        bookName: verse.bookName,
-        chapter: verse.chapter,
-        verseNumber: verse.verseNumber
-      });
-      GetComments();
-      setIsLoading(false);
-    });
+    GetVerse();
+    GetComments();
+    setIsLoading(false);
   }, [props.verseId, userId]);
 
   const handleDelete = () => {
@@ -95,7 +99,15 @@ const VerseDetail = props => {
         >
           Go Back
         </button>
-        {isEdit ? <VerseEditForm verseId={props.verseId} verse={verse} {...props} /> : null}
+        {isEdit ? (
+          <VerseEditForm
+            verseId={props.verseId}
+            onClickEditHandler={onClickEditHandler}
+            GetVerse={GetVerse}
+            verse={verse}
+            {...props}
+          />
+        ) : null}
         <div className="commentContainerCards">
           <h4>
             {comments.map(comment => {

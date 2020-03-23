@@ -20,10 +20,10 @@ const VerseEditForm = props => {
 };
 
   const updateVerse = e => {
+    e.preventDefault();
+
     const userId = sessionStorage.getItem("id");
 
-    // const verseId = props.match.params.verseId;
-    e.preventDefault();
     const editedVerse = {
       id: props.verseId,
       userId: parseInt(userId),
@@ -34,8 +34,8 @@ const VerseEditForm = props => {
     };
 
     VerseManager.update("verses", editedVerse).then(() => {
-      props.history.push("/verses")
-      props.history.push(`/verses/${props.verseId}`)
+      props.GetVerse();
+      props.onClickEditHandler();
     })
   };
 
