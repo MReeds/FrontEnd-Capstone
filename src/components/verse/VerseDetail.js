@@ -3,7 +3,6 @@ import VerseManager from "../../modules/VerseManager";
 import VerseEditForm from "./VerseEditForm";
 import AddComment from "../comment/AddComment";
 import CommentCard from "../comment/CommentCard";
-import EditComment from "../comment/EditComment";
 
 const VerseDetail = props => {
   const userId = sessionStorage.getItem("id");
@@ -19,11 +18,11 @@ const VerseDetail = props => {
   const [comments, setComments] = useState([]);
 
   const onClickEditHandler = () => {
-    setIsEdit(true);
+    setIsEdit(!isEdit);
   };
 
   const onClickCommentHandler = () => {
-    setIsComment(true);
+    setIsComment(!isComment);
   };
 
   const editCommentOnClick = () => {
@@ -122,9 +121,6 @@ const VerseDetail = props => {
             {...props}
           />
         ) : null}
-        {comments.map(comment => {
-          return isEditComment ? <EditComment comment={comment} {...props}/> : null
-        })}
       </div>
     </div>
   );
