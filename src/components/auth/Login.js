@@ -105,7 +105,7 @@ const Login = props => {
                     required=""
                     autoFocus=""
                     />
-                    <label htmlFor="inputEmail">Email: </label>
+                    <label htmlFor="inputEmail"> Email: </label>
                     <input
                     onChange={handleFieldChange}
                     type="email"
@@ -120,7 +120,7 @@ const Login = props => {
 
         <form onSubmit={handleRegister}>
             <fieldset>
-                <h3>Create an account</h3>
+                <h3> Or create an account</h3>
                 <div className="formgrid">
                     <label htmlFor="inputUsername">Username: </label>
                     <input
@@ -130,7 +130,7 @@ const Login = props => {
                     placeholder="Username"
                     autoFocus=""
                     />
-                    <label htmlFor="InputEmail">Email: </label>
+                    <label htmlFor="InputEmail"> Email: </label>
                     <input 
                     onChange={handleRegisterFieldChange}
                     type="email"

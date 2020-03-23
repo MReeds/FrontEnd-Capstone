@@ -95,7 +95,7 @@ const VerseDetail = props => {
         >
           Go Back
         </button>
-        {isEdit ? <VerseEditForm {...props} /> : null}
+        {isEdit ? <VerseEditForm verseId={props.verseId} verse={verse} {...props} /> : null}
         <div className="commentContainerCards">
           <h4>
             {comments.map(comment => {

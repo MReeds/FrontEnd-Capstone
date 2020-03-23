@@ -21,7 +21,7 @@ const ApplicationViews = props => {
       <Route
         exact
         path="/"
-        render={props => {
+        render={() => {
           return <Home />;
         }}
       />
@@ -45,16 +45,6 @@ const ApplicationViews = props => {
           );
         }}
       />
-      {/* <Route
-        path="/verses/:verseId(\d+)"
-        render={props => {
-          return hasUser ? (
-            <VerseEditForm {...props} />
-          ) : (
-            <Redirect to="/login" />
-          );
-        }}
-      /> */}
     </React.Fragment>
   );
 };
