@@ -7,7 +7,7 @@ const VerseForm = props => {
 
   const [verse, setVerse] = useState({
     userId: parseInt(userId),
-    emotion: "Peaceful",
+    emotion: "",
     bookName: "",
     chapter: "",
     verseNumber: ""
@@ -45,7 +45,7 @@ const VerseForm = props => {
   return (
     <>
       <form onSubmit={createNewVerse}>
-        <label htmlFor="emotion">How do you feel? </label>
+        <label htmlFor="emotion">Select a mood</label>
         <div className="formgrid">
           <select id="emotion" required onChange={handleFieldChange}>
             {props.emotions.map(emotion => {

@@ -9,11 +9,10 @@ const VerseList = props => {
   const [emotions, setEmotions] = useState([]);
   const [emotion, setEmotion] = useState("");
   let [select, setSelect] = useState(false);
-
   const [isAdd, setIsAdd] = useState(false);
 
   const onClickHandler = () => {
-    setIsAdd(true);
+    setIsAdd(!isAdd);
   };
 
   const onSelectHandler = e => {
@@ -40,7 +39,7 @@ const VerseList = props => {
     stateToChange[e.target.id] = e.target.value;
     setVerses(stateToChange);
   };
-  
+
   useEffect(() => {
     getVerses();
     GetEmotions();
@@ -48,9 +47,12 @@ const VerseList = props => {
 
   return (
     <>
-          <h3>How do you feel today?</h3>
+      <h3>How do you feel today?</h3>
       <div>
-        <select onChange={(handleFieldChange, onSelectHandler)}>
+        <select
+          onChange={(handleFieldChange, onSelectHandler)}
+        >
+          <option value="">Select your mood</option>
           {emotions.map(emotion => {
             return (
               <option key={emotion.id} id={emotion.id}>

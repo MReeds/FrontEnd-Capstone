@@ -11,7 +11,7 @@ const VerseDetail = props => {
 
   const [isEdit, setIsEdit] = useState(false);
 
-  const [setIsEditComment] = useState(false);
+  const [isEditComment, setIsEditComment] = useState(false);
 
   const [isComment, setIsComment] = useState(false);
 

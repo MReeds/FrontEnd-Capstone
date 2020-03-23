@@ -51,6 +51,7 @@ const VerseEditForm = props => {
       <form>
       <div className="formgrid">
           <select
+          value={verse.emotion}
           id="emotion"
           onChange={handleFieldChange}>
             {emotions.map(emotion => {
@@ -69,7 +70,7 @@ const VerseEditForm = props => {
             required
             onChange={handleFieldChange}
             id="bookName"
-            value={verse.bookName}
+            value={verse.bookName || ""}
           />
         </div>
         <div className="formgrid">
@@ -79,7 +80,7 @@ const VerseEditForm = props => {
             required
             onChange={handleFieldChange}
             id="chapter"
-            value={verse.chapter}
+            value={verse.chapter || ""}
           />
         </div>
         <div className="formgrid">
@@ -89,7 +90,7 @@ const VerseEditForm = props => {
             required
             onChange={handleFieldChange}
             id="verseNumber"
-            value={verse.verseNumber}
+            value={verse.verseNumber || ""}
           />
         </div>
         <div className="editBtn">
