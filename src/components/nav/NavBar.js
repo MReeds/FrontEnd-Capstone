@@ -14,11 +14,13 @@ const NavBar = props => {
       <h1 className="siteTitle">Reassurance</h1>
       <nav>
         <ul className="navContainer">
-          <li>
-            <Link className="navLink" to="/">
-              Home
-            </Link>
-          </li>
+          {props.hasUser ? (
+            <li>
+              <Link className="navLink" to="/">
+                Home
+              </Link>
+            </li>
+          ) : null}
           {props.hasUser ? (
             <li>
               <Link className="navLink" to="/" onClick={handleLogout}>
