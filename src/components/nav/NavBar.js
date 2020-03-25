@@ -41,6 +41,13 @@ const NavBar = props => {
               </Link>
             </li>
           ) : null}
+          {props.hasUser ? (
+            <li>
+              <Link className="navLink" to="/read">
+                Read
+              </Link>
+            </li>
+          ) : null}
         </ul>
       </nav>
     </header>

@@ -4,6 +4,7 @@ import Home from "./Home/Home";
 import Login from "./auth/Login";
 import VerseList from "./verse/VerseList";
 import VerseDetail from "./verse/VerseDetail";
+import EsvList from "./esv/EsvList";
 
 const ApplicationViews = props => {
   // passing props to AV and declaring variable names equal to the props that were passed down from Capstone.js
@@ -43,6 +44,12 @@ const ApplicationViews = props => {
           ) : (
             <Redirect to="/login" />
           );
+        }}
+      />
+      <Route
+        path="/read"
+        render={props => {
+          return hasUser ? <EsvList {...props} /> : <Redirect to="/login" />;
         }}
       />
     </React.Fragment>
