@@ -23,7 +23,7 @@ const CommentEditForm = props => {
     };
 
     VerseManager.update("comments", editedComment).then(props.GetComments).then(() => {
-        props.editCommentOnClick()
+        props.editCommentOnClick();
         props.history.push("/");
         props.history.push(`/verses/${editedComment.verseId}`)
     });

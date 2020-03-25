@@ -18,6 +18,15 @@ export default {
   getWithComments(resource) {
     return fetch(`${remoteUrl}/${resource}?_expand=verse`).then(results => results.json());
   },
+  getRandomId(resource) {
+    return fetch(`${remoteUrl}/${resource}`)
+    .then(results => results.json())
+    .then(verses => {
+      const randomIndex = Math.floor(Math.random() * verses.length);
+      const randomVerse = verses[randomIndex];
+      return randomVerse.id;
+    });
+  },
   getAll(resource) {
     return fetch(`${remoteUrl}/${resource}`).then(results => results.json());
   },
