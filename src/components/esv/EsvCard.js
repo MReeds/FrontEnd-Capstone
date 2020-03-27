@@ -9,10 +9,6 @@ const EsvCard = props => {
                         {Object.values(props.data).map(results =>
                             results.reference)}
                     </span>
-                    {/* <span>
-                        {props.data.map(results => 
-                            results.reference)}
-                    </span> */}
                 </h2>
             </div>
         </div>
