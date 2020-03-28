@@ -14,7 +14,7 @@ const Home = () => {
   }, []);
   return (
     <>
-      <button onClick={refreshVerseSpotlight}>New Verse &#x27f3;</button>
+      <button onClick={refreshVerseSpotlight}>New Verse</button>
       {spotlightId && <VerseSpotlight verseId={spotlightId} />}
     </>
   );

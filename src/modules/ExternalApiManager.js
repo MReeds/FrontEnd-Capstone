@@ -1,10 +1,12 @@
+import apiToken from "./ApiKey";
+
 const externalApiUrl = "https://api.esv.org/v3/passage/search/"
 
 export default {
   getAll() {
     return fetch(`${externalApiUrl}?q=rabble`, {
       headers: {
-        Authorization: "Token 0f66d1fa9d03729350b37c98f674ba55b8adabfc",
+        Authorization: `${apiToken}`,
       }
     }).then(results => results.json());
   }
