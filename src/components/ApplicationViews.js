@@ -4,6 +4,7 @@ import Home from "./Home/Home";
 import MaterialLogin from "./auth/MaterialSignIn";
 import VerseList from "./verse/VerseList";
 import VerseDetail from "./verse/VerseDetail";
+import Register from "./auth/Register";
 
 const ApplicationViews = props => {
   // passing props to AV and declaring variable names equal to the props that were passed down from Capstone.js
@@ -18,9 +19,15 @@ const ApplicationViews = props => {
           return <MaterialLogin setUser={setUser} {...props} />;
         }}
       />
+      <Route 
+      path="/register"
+      render={props => {
+        return <Register setUser={setUser} {...props}/>
+      }}
+      />
       <Route
         exact
-        path="/"
+        path="/home"
         render={() => {
           return hasUser ? <Home /> : <Redirect to="/login" />;
         }}

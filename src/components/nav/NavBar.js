@@ -17,14 +17,14 @@ const NavBar = props => {
         <ul className="navContainer">
           {props.hasUser ? (
             <li>
-              <Link to="/" className="material-icons">
+              <Link to="/home" className="material-icons">
                 home
               </Link>
             </li>
           ) : null}
           {props.hasUser ? (
             <li>
-              <Link className="navLink" to="/" onClick={handleLogout}>
+              <Link className="navLink" to="/home" onClick={handleLogout}>
                 Logout
               </Link>
             </li>
