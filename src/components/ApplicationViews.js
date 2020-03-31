@@ -1,9 +1,10 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import Home from "./Home/Home";
-import Login from "./auth/Login";
+import MaterialLogin from "./auth/MaterialSignIn";
 import VerseList from "./verse/VerseList";
 import VerseDetail from "./verse/VerseDetail";
+import Register from "./auth/Register";
 
 const ApplicationViews = props => {
   // passing props to AV and declaring variable names equal to the props that were passed down from Capstone.js
@@ -15,12 +16,18 @@ const ApplicationViews = props => {
       <Route
         path="/login"
         render={props => {
-          return <Login setUser={setUser} {...props} />;
+          return <MaterialLogin setUser={setUser} {...props} />;
         }}
+      />
+      <Route 
+      path="/register"
+      render={props => {
+        return <Register setUser={setUser} {...props}/>
+      }}
       />
       <Route
         exact
-        path="/"
+        path="/home"
         render={() => {
           return hasUser ? <Home /> : <Redirect to="/login" />;
         }}

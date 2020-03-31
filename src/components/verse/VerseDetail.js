@@ -79,26 +79,27 @@ const VerseDetail = props => {
             {verse.chapter}:{verse.verseNumber}
           </span>
         </h3>
-        <button
+        <span
+          type="button"
+          className="material-icons"
+          disabled={isLoading}
+          onClick={() => props.history.push("/verses")}
+        >
+          arrow_back
+        </span>
+        <span className="material-icons"
           type="button"
           disabled={isLoading}
           onClick={onClickCommentHandler}
         >
-          Comment
-        </button>
-        <button type="button" disabled={isLoading} onClick={onClickEditHandler}>
-          Edit
-        </button>
-        <button type="button" disabled={isLoading} onClick={handleDelete}>
-          Delete
-        </button>
-        <button
-          type="button"
-          disabled={isLoading}
-          onClick={() => props.history.push("/verses")}
-        >
-          Go Back
-        </button>
+          add_comment
+        </span>
+        <span type="button" className="material-icons" disabled={isLoading} onClick={onClickEditHandler}>
+          edit
+        </span>
+        <span type="button" className="material-icons" disabled={isLoading} onClick={handleDelete}>
+          delete
+        </span>
         {isEdit ? (
           <VerseEditForm
             verseId={props.verseId}

@@ -72,9 +72,9 @@ const VerseList = props => {
         </div>
       </section>
       <div>
-        <button type="button" onClick={onClickHandler}>
-          Add Verse
-        </button>
+        <span type="button" className="material-icons" onClick={onClickHandler}>
+          add_circle
+        </span>
         {isAdd ? (
           <VerseForm
             getVerses={getVerses}
