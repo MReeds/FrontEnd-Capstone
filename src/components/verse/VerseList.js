@@ -3,6 +3,12 @@ import VerseCard from "./VerseCard";
 import VerseManager from "../../modules/VerseManager";
 import EmotionManager from "../../modules/EmotionManager";
 import VerseForm from "./VerseAddForm";
+import StickyFooter from "../footer/Footer";
+import { makeStyles } from "@material-ui/core/styles";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
 const VerseList = props => {
   const [verses, setVerses] = useState([]);
@@ -40,6 +46,18 @@ const VerseList = props => {
     setVerses(stateToChange);
   };
 
+  const useStyles = makeStyles(theme => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2)
+    }
+  }));
+
+  const classes = useStyles();
+
   useEffect(() => {
     getVerses();
     GetEmotions();
@@ -47,20 +65,30 @@ const VerseList = props => {
 
   return (
     <>
-      <h3>How do you feel today?</h3>
       <div>
-        <select
-          onChange={(handleFieldChange, onSelectHandler)}
-        >
-          <option value="">Select your mood</option>
-          {emotions.map(emotion => {
-            return (
-              <option key={emotion.id} id={emotion.id}>
-                {emotion.name}
-              </option>
-            );
-          })}
-        </select>
+        <h3>How do you feel today?</h3>
+        <FormControl>
+          <Select
+            labelId="demo-simple-select-placeholder-label-label"
+            id="demo-simple-select-placeholder-label"
+            value={emotion || ""}
+            onChange={(handleFieldChange, onSelectHandler)}
+            displayEmpty
+            className={classes.selectEmpty}
+          >
+            <MenuItem value="">
+              <em>Select</em>
+            </MenuItem>
+            {emotions.map(emotion => {
+              return (
+                <MenuItem key={emotion.id} value={emotion.name}>
+                  {emotion.name}
+                </MenuItem>
+              );
+            })}
+          </Select>
+          <FormHelperText>Select your Mood</FormHelperText>
+        </FormControl>
       </div>
       <section className="verseSectionContent">
         <div className="verseContainerCards">
@@ -83,6 +111,7 @@ const VerseList = props => {
             {...props}
           />
         ) : null}
+        {StickyFooter()}
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import VerseSpotlight from "../verse/VerseSpotlight";
 import VerseManager from "../../modules/VerseManager";
+import StickyFooter from "../footer/Footer";
 
 const Home = () => {
   const [spotlightId, setSpotlightId] = useState(0);
@@ -16,6 +17,7 @@ const Home = () => {
     <>
       <button className="material-icons" onClick={refreshVerseSpotlight}>refresh</button>
       {spotlightId && <VerseSpotlight verseId={spotlightId} />}
+      {StickyFooter()}
     </>
   );
 };
