@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import Home from "./Home/Home";
-import Login from "./auth/Login";
+import MaterialLogin from "./auth/MaterialSignIn";
 import VerseList from "./verse/VerseList";
 import VerseDetail from "./verse/VerseDetail";
 
@@ -15,7 +15,7 @@ const ApplicationViews = props => {
       <Route
         path="/login"
         render={props => {
-          return <Login setUser={setUser} {...props} />;
+          return <MaterialLogin setUser={setUser} {...props} />;
         }}
       />
       <Route
