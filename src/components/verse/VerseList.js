@@ -9,6 +9,17 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import IconButton from "@material-ui/core/IconButton";
+import AddCircle from "@material-ui/icons/AddCircle";
+
+
+const AddButtonStyles = makeStyles(theme => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1)
+    }
+  }
+}));
 
 const VerseList = props => {
   const [verses, setVerses] = useState([]);
@@ -55,7 +66,7 @@ const VerseList = props => {
       marginTop: theme.spacing(2)
     }
   }));
-
+  const ButtonClasses = AddButtonStyles();
   const classes = useStyles();
 
   useEffect(() => {
@@ -101,7 +112,9 @@ const VerseList = props => {
       </section>
       <div>
         <span type="button" className="material-icons" onClick={onClickHandler}>
-          add_circle
+          <IconButton aria-label="AddCircle">
+            <AddCircle />
+          </IconButton>
         </span>
         {isAdd ? (
           <VerseForm

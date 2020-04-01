@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import VerseManager from "../../modules/VerseManager";
+import { makeStyles } from "@material-ui/core/styles";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
 
 const VerseForm = props => {
   // userId is set as equal to the id currently in session storage
@@ -38,6 +42,18 @@ const VerseForm = props => {
     }
   };
 
+  const useStyles = makeStyles(theme => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2)
+    }
+  }));
+
+  const classes = useStyles();
+
   useEffect(() => {
     props.GetEmotions();
   }, []);
@@ -45,9 +61,25 @@ const VerseForm = props => {
   return (
     <>
       <form onSubmit={createNewVerse}>
-        <label htmlFor="emotion">Select a mood</label>
+        <label htmlFor="emotion">Add a new Verse</label>
         <div className="formgrid">
-          <select id="emotion" required onChange={handleFieldChange}>
+          <FormControl>
+          <Select 
+          labelId="demo-simple-select-placeholder-label-label"
+          id="emotion"
+          onChange={handleFieldChange}
+          displayEmpty
+          className={classes.selectEmpty}>
+              {props.emotions.map(emotion => {
+                return (
+                  <MenuItem key={emotion.id} id={emotion.id}>
+                    {emotion.name}
+                  </MenuItem>
+                )
+              })}
+          </Select>
+          </FormControl>
+          {/* <select id="emotion" required onChange={handleFieldChange}>
             {props.emotions.map(emotion => {
               return (
                 <option key={emotion.id} id={emotion.id}>
@@ -55,7 +87,7 @@ const VerseForm = props => {
                 </option>
               );
             })}
-          </select>
+          </select> */}
         </div>
         <label htmlFor="book">Book </label>
         <div className="formgrid">
