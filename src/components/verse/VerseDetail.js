@@ -4,18 +4,33 @@ import VerseEditForm from "./VerseEditForm";
 import AddComment from "../comment/AddComment";
 import CommentCard from "../comment/CommentCard";
 import StickyFooter from "../footer/Footer";
+import DeleteIcon from "@material-ui/icons/Delete";
+import IconButton from "@material-ui/core/IconButton";
+import EditIcon from "@material-ui/icons/Edit";
+import CommentIcon from "@material-ui/icons/Comment";
+import ArrowBackIcon from "@material-ui/icons/ArrowBack";
+import { makeStyles } from "@material-ui/core/styles";
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1)
+    }
+  }
+}));
+
 
 const VerseDetail = props => {
   const userId = sessionStorage.getItem("id");
 
   const [isLoading, setIsLoading] = useState(true);
-
+  
   const [isEdit, setIsEdit] = useState(false);
 
   const [isEditComment, setIsEditComment] = useState(false);
-
+  
   const [isComment, setIsComment] = useState(false);
-
+  
   const [comments, setComments] = useState([]);
 
   const onClickEditHandler = () => {
@@ -25,7 +40,7 @@ const VerseDetail = props => {
   const onClickCommentHandler = () => {
     setIsComment(!isComment);
   };
-
+  
   const editCommentOnClick = () => {
     setIsEditComment(true);
   };
@@ -35,7 +50,7 @@ const VerseDetail = props => {
       setComments(AllComments);
     });
   };
-
+  
   const GetVerse = () => {
     VerseManager.get("verses", props.verseId).then(verse => {
       setVerse({
@@ -47,7 +62,7 @@ const VerseDetail = props => {
       });
     });
   };
-
+  
   const [verse, setVerse] = useState({
     userId: parseInt(userId),
     emotion: "",
@@ -55,14 +70,14 @@ const VerseDetail = props => {
     chapter: "",
     verseNumber: ""
   });
-
+  
   useEffect(() => {
     //   VerseManager get method is passed a resource and an id. So here im passing "verses" as the resource and using verseId thats passed down as a prop from Application Views
     GetVerse();
     GetComments();
     setIsLoading(false);
   }, [props.verseId, userId]);
-
+  
   const handleDelete = () => {
     //   HandleDelete is passed a resource and an id similar to get and we pass in the same arguments
     setIsLoading(true);
@@ -70,6 +85,8 @@ const VerseDetail = props => {
       props.history.push("/verses");
     });
   };
+  
+  const classes = useStyles();
 
   return (
     <div className="card">
@@ -86,21 +103,39 @@ const VerseDetail = props => {
           disabled={isLoading}
           onClick={() => props.history.push("/verses")}
         >
-          arrow_back
+          <IconButton aria-label="arrowBack">
+            <ArrowBackIcon />
+          </IconButton>
         </span>
-        <span className="material-icons"
+        <span
           type="button"
           disabled={isLoading}
           onClick={onClickCommentHandler}
         >
-          add_comment
+          <IconButton aria-label="comment">
+            <CommentIcon />
+          </IconButton>
         </span>
-        <span type="button" className="material-icons" disabled={isLoading} onClick={onClickEditHandler}>
-          edit
+        <span
+          type="button"
+          disabled={isLoading}
+          onClick={onClickEditHandler}
+        >
+          <IconButton aria-label="edit">
+            <EditIcon />
+          </IconButton>
         </span>
-        <span type="button" className="material-icons" disabled={isLoading} onClick={handleDelete}>
-          delete
+        <span
+          type="button"
+          disabled={isLoading}
+          onClick={handleDelete}
+        >
+          <IconButton aria-label="delete">
+            <DeleteIcon />
+          </IconButton>
         </span>
+        <div className={classes.root}>
+        </div>
         {isEdit ? (
           <VerseEditForm
             verseId={props.verseId}
