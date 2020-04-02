@@ -3,7 +3,6 @@ import VerseCard from "./VerseCard";
 import VerseManager from "../../modules/VerseManager";
 import EmotionManager from "../../modules/EmotionManager";
 import VerseForm from "./VerseAddForm";
-import StickyFooter from "../footer/Footer";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormHelperText from "@material-ui/core/FormHelperText";
@@ -118,13 +117,11 @@ const VerseList = props => {
         </span>
         {isAdd ? (
           <VerseForm
-            getVerses={getVerses}
-            GetEmotions={GetEmotions}
-            emotions={emotions}
-            {...props}
+          getVerses={getVerses}
+          emotions={emotions}
+          {...props}
           />
-        ) : null}
-        {StickyFooter()}
+          ) : null}
       </div>
     </>
   );

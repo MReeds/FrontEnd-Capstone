@@ -3,6 +3,7 @@ import VerseManager from "../../modules/VerseManager";
 import EmotionManager from "../../modules/EmotionManager";
 import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 
@@ -66,24 +67,18 @@ const VerseEditForm = props => {
     <>
       <form>
       <div className="formgrid">
-        <FormControl>
-          <Select
-          labelId="demo-simple-select-placeholder-label-label"
+          <select
+          value={verse.emotion}
           id="emotion"
-          value={verse.emotion || ""}
-          onChange={handleFieldChange}
-          displayEmpty
-          className={classes.selectEmpty}
-          >
-          {emotions.map(emotion => {
-            return (
-              <MenuItem key={emotion.id} value={emotion.name || ""}>
-                {emotion.name}
-              </MenuItem>
-            )
-          })}
-          </Select>
-        </FormControl>
+          onChange={handleFieldChange}>
+            {emotions.map(emotion => {
+              return (
+                <option key={emotion.id} id={emotion.id}>
+                  {emotion.name}
+                </option>
+              );
+            })}
+          </select>
         </div>
         <div className="formgrid">
           <label htmlFor="bookName">Book Name </label>

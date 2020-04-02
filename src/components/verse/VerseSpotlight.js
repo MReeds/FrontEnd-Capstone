@@ -25,8 +25,8 @@ const VerseSpotlight = props => {
   }, [props.verseId]);
 
   return loginIdNum === verse.userId ? (
-    <div className="verseSpotlight">
-      <h2>{verse.bookName}</h2>
+    <div>
+      <h2 className="homeContent">{verse.bookName}</h2>
       <h2>
         {verse.chapter}:{verse.verseNumber}
       </h2>

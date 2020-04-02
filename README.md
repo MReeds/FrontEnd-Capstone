@@ -1,6 +1,9 @@
 npm install @material-ui/icons
 npm install @material-ui/core
-npm install @material-ui/lab
+npm install react-bootstrap bootstrap
+npm install materialize-css
+npm install react-materialize
+
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

@@ -4,10 +4,14 @@ import { makeStyles } from "@material-ui/core/styles";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
+import EmotionManager from "../../modules/EmotionManager";
 
 const VerseForm = props => {
   // userId is set as equal to the id currently in session storage
   const userId = sessionStorage.getItem("id");
+  const [emotion, setEmotion] = useState("");
+  const [emotions, setEmotions] = useState([]);
+  let [select, setSelect] = useState(false);
 
   const [verse, setVerse] = useState({
     userId: parseInt(userId),
@@ -24,15 +28,30 @@ const VerseForm = props => {
     setVerse(stateToChange);
   };
 
+  const onSelectHandler = e => {
+    setSelect(true);
+    setEmotion(e.target.value);
+    const stateToChange = { ...verse };
+    stateToChange["emotion"] = e.target.value;
+    setVerse(stateToChange);
+  };
+
+  const GetEmotions = () => {
+    return EmotionManager.getAll().then(emotionsFromAPI => {
+      setEmotions(emotionsFromAPI);
+    });
+  };
+
   const createNewVerse = e => {
     e.preventDefault();
     // if a user doesnt write anything for the book or chapter field they will get an alert. If they do then it will post that entry and get all of them
     if (
+      verse.emotion === "" ||
       verse.bookName === "" ||
       verse.chapter === "" ||
       verse.verseNumber === ""
     ) {
-      window.alert("Please enter a book and a chapter to record");
+      window.alert("Please fill out all fields");
     } else {
       VerseManager.post("verses", verse, "user").then(props.getVerses);
       //   Once manager posts new verse and gets the list again its resets the value of the text boxes to an empty string below
@@ -55,7 +74,7 @@ const VerseForm = props => {
   const classes = useStyles();
 
   useEffect(() => {
-    props.GetEmotions();
+    GetEmotions();
   }, []);
 
   return (
@@ -64,22 +83,32 @@ const VerseForm = props => {
         <label htmlFor="emotion">Add a new Verse</label>
         <div className="formgrid">
           <FormControl>
-          <Select 
-          labelId="demo-simple-select-placeholder-label-label"
-          id="emotion"
-          onChange={handleFieldChange}
-          displayEmpty
-          className={classes.selectEmpty}>
+            {/* <InputLabel>Select</InputLabel> */}
+            <Select
+              labelId="demo-simple-select-placeholder-label-label"
+              // id="demo-simple-select-placeholder-label"
+              id="emotion"
+              value={emotion || ""}
+              onChange={onSelectHandler}
+              displayEmpty
+              className={classes.selectEmpty}
+            >
+              <MenuItem value="">
+                <em>Select</em>
+              </MenuItem>
               {props.emotions.map(emotion => {
                 return (
-                  <MenuItem key={emotion.id} id={emotion.id}>
+                  <MenuItem key={emotion.id} id={"emotion"} value={emotion.name}>
                     {emotion.name}
                   </MenuItem>
-                )
+                );
               })}
-          </Select>
+            </Select>
           </FormControl>
           {/* <select id="emotion" required onChange={handleFieldChange}>
+            <option value="">
+              Select
+            </option>
             {props.emotions.map(emotion => {
               return (
                 <option key={emotion.id} id={emotion.id}>

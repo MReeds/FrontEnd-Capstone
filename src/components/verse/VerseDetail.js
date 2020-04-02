@@ -3,7 +3,6 @@ import VerseManager from "../../modules/VerseManager";
 import VerseEditForm from "./VerseEditForm";
 import AddComment from "../comment/AddComment";
 import CommentCard from "../comment/CommentCard";
-import StickyFooter from "../footer/Footer";
 import DeleteIcon from "@material-ui/icons/Delete";
 import IconButton from "@material-ui/core/IconButton";
 import EditIcon from "@material-ui/icons/Edit";
@@ -171,7 +170,6 @@ const VerseDetail = props => {
           />
         ) : null}
       </div>
-      {StickyFooter()}
     </div>
   );
 };
