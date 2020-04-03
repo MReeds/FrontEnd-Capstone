@@ -9,6 +9,9 @@ import EditIcon from "@material-ui/icons/Edit";
 import CommentIcon from "@material-ui/icons/Comment";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -88,7 +91,7 @@ const VerseDetail = props => {
   const classes = useStyles();
 
   return (
-    <div className="card">
+    <Card className="VerseDetails">
       <div className="cardContent">
         <h3>
           <span>
@@ -170,7 +173,7 @@ const VerseDetail = props => {
           />
         ) : null}
       </div>
-    </div>
+    </Card>
   );
 };
 

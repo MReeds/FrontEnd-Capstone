@@ -1,6 +1,6 @@
 npm install @material-ui/icons
 npm install @material-ui/core
-npm install react-bootstrap bootstrap
+npm install react-bootstrap --save
 npm install materialize-css
 npm install react-materialize
 

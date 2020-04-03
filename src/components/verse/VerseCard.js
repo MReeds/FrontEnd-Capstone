@@ -1,4 +1,5 @@
 import React from "react";
+import "./verse.css";
 
 const VerseCard = props => {
   const loginId = sessionStorage.getItem("id");

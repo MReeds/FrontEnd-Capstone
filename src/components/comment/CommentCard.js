@@ -42,7 +42,7 @@ const classes = useStyles();
       <div className="commentCard">
         <div className="commentContent">
           <h4>
-            <span className="cardTitle">{props.comment.comment}</span>
+            <span className="commentTitle">{props.comment.comment}</span>
           </h4>
         </div>
         <span type="button" onClick={editCommentOnClick}>

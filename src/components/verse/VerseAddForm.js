@@ -5,6 +5,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import EmotionManager from "../../modules/EmotionManager";
+import "./verse.css";
 
 const VerseForm = props => {
   // userId is set as equal to the id currently in session storage
