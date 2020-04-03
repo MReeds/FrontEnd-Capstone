@@ -43,3 +43,5 @@ Before we run the application, you must run the command for the React app. In th
 ### `cd ../`
 
 Afterwords enter the following command into the terminal to start using the application
+
+ ### `npm start`
