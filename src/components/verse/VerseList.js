@@ -3,6 +3,25 @@ import VerseCard from "./VerseCard";
 import VerseManager from "../../modules/VerseManager";
 import EmotionManager from "../../modules/EmotionManager";
 import VerseForm from "./VerseAddForm";
+import { makeStyles } from "@material-ui/core/styles";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormHelperText from "@material-ui/core/FormHelperText";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+import IconButton from "@material-ui/core/IconButton";
+import AddCircle from "@material-ui/icons/AddCircle";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import "./verse.css";
+
+const AddButtonStyles = makeStyles(theme => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1)
+    }
+  }
+}));
 
 const VerseList = props => {
   const [verses, setVerses] = useState([]);
@@ -40,6 +59,18 @@ const VerseList = props => {
     setVerses(stateToChange);
   };
 
+  const useStyles = makeStyles(theme => ({
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2)
+    }
+  }));
+  const ButtonClasses = AddButtonStyles();
+  const classes = useStyles();
+
   useEffect(() => {
     getVerses();
     GetEmotions();
@@ -47,43 +78,60 @@ const VerseList = props => {
 
   return (
     <>
-      <h3>How do you feel today?</h3>
-      <div>
-        <select
-          onChange={(handleFieldChange, onSelectHandler)}
-        >
-          <option value="">Select your mood</option>
-          {emotions.map(emotion => {
-            return (
-              <option key={emotion.id} id={emotion.id}>
-                {emotion.name}
-              </option>
-            );
-          })}
-        </select>
-      </div>
-      <section className="verseSectionContent">
-        <div className="verseContainerCards">
-          {verses.map(verse =>
-            select ? (
-              <VerseCard key={verse.id} verse={verse} {...props} />
-            ) : null
-          )}
+      <Card className="verseList">
+            <CardContent>
+        <div>
+          <h3>How do you feel today?</h3>
+          <FormControl>
+            <Select
+              labelId="demo-simple-select-placeholder-label-label"
+              id="demo-simple-select-placeholder-label"
+              value={emotion || ""}
+              onChange={(handleFieldChange, onSelectHandler)}
+              displayEmpty
+              className={classes.selectEmpty}
+            >
+              <MenuItem value="">
+                <em>Select</em>
+              </MenuItem>
+              {emotions.map(emotion => {
+                return (
+                  <MenuItem key={emotion.id} value={emotion.name}>
+                    {emotion.name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+            <FormHelperText>Select your Mood</FormHelperText>
+          </FormControl>
         </div>
-      </section>
-      <div>
-        <span type="button" className="material-icons" onClick={onClickHandler}>
-          add_circle
-        </span>
-        {isAdd ? (
-          <VerseForm
-            getVerses={getVerses}
-            GetEmotions={GetEmotions}
-            emotions={emotions}
-            {...props}
-          />
-        ) : null}
-      </div>
+        <section className="verseSectionContent">
+          <div className="verseContainerCards">
+            {verses.map(verse =>
+              select ? (
+                <VerseCard classname="verses" key={verse.id} verse={verse} {...props} />
+              ) : null
+            )}
+          </div>
+        </section>
+        <div>
+          <CardActions>
+            <span
+              type="button"
+              className="material-icons"
+              onClick={onClickHandler}
+            >
+              <IconButton aria-label="AddCircle">
+                <AddCircle />
+              </IconButton>
+          </span>
+            </CardActions>
+          {isAdd ? (
+            <VerseForm className="verseForm" getVerses={getVerses} emotions={emotions} {...props} />
+          ) : null}
+        </div>
+        </CardContent>
+      </Card>
     </>
   );
 };

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import NavBar from "./nav/NavBar";
 import ApplicationViews from "./ApplicationViews";
+import { CssBaseline } from "@material-ui/core";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const Capstone = () => {
     // isAuthenticated is a function name that gets the credentials from session storage so long as it isnt a null value
@@ -22,6 +25,7 @@ const Capstone = () => {
     return (
         // This return statement passes the hasUser, clearUser and setUser down to the child components as props
         <>
+        <CssBaseline/>
         <NavBar hasUser={hasUser} clearUser={clearUser} />
         <ApplicationViews hasUser={hasUser} setUser={setUser}/>
         </>

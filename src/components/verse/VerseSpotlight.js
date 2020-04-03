@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import VerseManager from "../../modules/VerseManager";
+import "./../Home/Home.css"
 
 const VerseSpotlight = props => {
   const loginId = sessionStorage.getItem("id");
@@ -25,8 +26,8 @@ const VerseSpotlight = props => {
   }, [props.verseId]);
 
   return loginIdNum === verse.userId ? (
-    <div className="verseSpotlight">
-      <h2>{verse.bookName}</h2>
+    <div>
+      <h2 className="homeContent">{verse.bookName}</h2>
       <h2>
         {verse.chapter}:{verse.verseNumber}
       </h2>

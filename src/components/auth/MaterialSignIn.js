@@ -10,7 +10,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import UserManager from "../../modules/UserManager";
 
-
 const MaterialLogin = props => {
   // sets the default value or username and email to an empty string
   const [credentials, setCredentials] = useState({
@@ -115,7 +114,7 @@ const useStyles = makeStyles((theme) => ({
         </form>
       </div>
       <Box mt={8}>
-      </Box>
+      </Box>      
     </Container>
   );
 }
