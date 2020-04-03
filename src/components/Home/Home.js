@@ -11,9 +11,6 @@ const Home = () => {
   const username = loginInfo.split(`"`);
   const justUsername = username[1];
   const upperCaseUsername = justUsername.charAt(0).toUpperCase() + justUsername.slice(1)
-
-  const loginId = sessionStorage.getItem("id");
-  const loginIdNum = parseInt(loginId);
   
   const [spotlightId, setSpotlightId] = useState(0);
 
