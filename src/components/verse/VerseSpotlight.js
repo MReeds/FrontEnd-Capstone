@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import VerseManager from "../../modules/VerseManager";
+import "./../Home/Home.css"
 
 const VerseSpotlight = props => {
   const loginId = sessionStorage.getItem("id");

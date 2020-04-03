@@ -5,13 +5,14 @@
     margin: auto;
     width: 50%;
     text-align: center;
-  }
-
-  div h2.homeContent {
-    margin: auto;
   } */
+
+  /* div h2.homeContent {
+    margin: auto;
+  } */ 
 
   .spotlight {
       max-width: 50%;
+      display: flex;
       margin: auto;
   }

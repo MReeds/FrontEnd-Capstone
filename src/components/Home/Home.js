@@ -7,6 +7,14 @@ import CardContent from "@material-ui/core/CardContent";
 import "./Home.css";
 
 const Home = () => {
+  const loginInfo = sessionStorage.getItem("credentials").slice(12);
+  const username = loginInfo.split(`"`);
+  const justUsername = username[1];
+  const upperCaseUsername = justUsername.charAt(0).toUpperCase() + justUsername.slice(1)
+
+  const loginId = sessionStorage.getItem("id");
+  const loginIdNum = parseInt(loginId);
+  
   const [spotlightId, setSpotlightId] = useState(0);
 
   const refreshVerseSpotlight = () => {
@@ -19,14 +27,17 @@ const Home = () => {
   return (
     <>
       <Card className="spotlight">
-        <CardActions>
+        <CardContent className="spotlightContent">
+          <h2>
+  Hello, {upperCaseUsername}! Your random verse for the day is
+            {spotlightId && <VerseSpotlight verseId={spotlightId} />}
+          </h2>
+        </CardContent>
+        <CardActions className="spotlightBtn">
           <button className="material-icons" onClick={refreshVerseSpotlight}>
             refresh
           </button>
         </CardActions>
-        <CardContent>
-          {spotlightId && <VerseSpotlight verseId={spotlightId} />}
-        </CardContent>
       </Card>
     </>
   );

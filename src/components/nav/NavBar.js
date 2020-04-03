@@ -1,11 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-import { Link } from "react-router-dom";
-import {Navbar, Nav, FormControl, Form, Button} from "react-bootstrap";
-// import {Nav} from "react-bootstrap/Navbar";
-// import {FormControl} from "react-bootstrap/Navbar";
-// import {Form} from "react-bootstrap/Navbar";
-// import {Button} from "react-bootstrap/Navbar";
+// import { Link } from "react-router-dom";
+import { Navbar, Nav, FormControl, Form, Button } from "react-bootstrap";
 import "./NavBar.css";
 
 const NavBar = props => {
@@ -17,15 +13,19 @@ const NavBar = props => {
 
   return (
     <>
-        <Navbar bg="dark" variant="dark">
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-          <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-          </Nav>
-        </Navbar>
-        <br />
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand>Reassurance</Navbar.Brand>
+        <Nav className="mr-auto">
+          {props.hasUser ? <Nav.Link href="/home">Home</Nav.Link> : null}
+          {props.hasUser ? <Nav.Link href="/verses">Verses</Nav.Link> : null}
+          {props.hasUser ? (
+            <Nav.Link href="/home" onClick={handleLogout}>
+              Logout
+            </Nav.Link>
+          ) : null}
+        </Nav>
+      </Navbar>
+      <br />
       {/* <nav>
       <header>
         <h1 className="siteTitle">Reassurance</h1>

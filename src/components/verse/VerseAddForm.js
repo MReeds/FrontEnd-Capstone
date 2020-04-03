@@ -83,10 +83,8 @@ const VerseForm = props => {
         <label htmlFor="emotion">Add a new Verse</label>
         <div className="formgrid">
           <FormControl>
-            {/* <InputLabel>Select</InputLabel> */}
             <Select
               labelId="demo-simple-select-placeholder-label-label"
-              // id="demo-simple-select-placeholder-label"
               id="emotion"
               value={emotion || ""}
               onChange={onSelectHandler}
@@ -105,20 +103,7 @@ const VerseForm = props => {
               })}
             </Select>
           </FormControl>
-          {/* <select id="emotion" required onChange={handleFieldChange}>
-            <option value="">
-              Select
-            </option>
-            {props.emotions.map(emotion => {
-              return (
-                <option key={emotion.id} id={emotion.id}>
-                  {emotion.name}
-                </option>
-              );
-            })}
-          </select> */}
         </div>
-        <label htmlFor="book">Book </label>
         <div className="formgrid">
           <input
             type="text"
@@ -128,7 +113,7 @@ const VerseForm = props => {
             placeholder="Matthew, Mark, Luke"
           />
         </div>
-        <label htmlFor="chapter">Chapter </label>
+        <label htmlFor="book">Book </label>
         <div className="formgrid">
           <input
             type="text"
@@ -138,7 +123,7 @@ const VerseForm = props => {
             placeholder="3, 15, 23"
           />
         </div>
-        <label htmlFor="verseNumber">Verse </label>
+        <label htmlFor="chapter">Chapter </label>
         <div className="formgrid">
           <input
             type="text"
@@ -147,6 +132,7 @@ const VerseForm = props => {
             placeholder="1-4"
           />
         </div>
+        <label htmlFor="verseNumber">Verse </label>
         <div className="alignButton">
           <button type="submit">Save Verse</button>
         </div>

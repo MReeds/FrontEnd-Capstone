@@ -10,7 +10,10 @@ import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import IconButton from "@material-ui/core/IconButton";
 import AddCircle from "@material-ui/icons/AddCircle";
-
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import "./verse.css";
 
 const AddButtonStyles = makeStyles(theme => ({
   root: {
@@ -75,54 +78,60 @@ const VerseList = props => {
 
   return (
     <>
-      <div>
-        <h3>How do you feel today?</h3>
-        <FormControl>
-          <Select
-            labelId="demo-simple-select-placeholder-label-label"
-            id="demo-simple-select-placeholder-label"
-            value={emotion || ""}
-            onChange={(handleFieldChange, onSelectHandler)}
-            displayEmpty
-            className={classes.selectEmpty}
-          >
-            <MenuItem value="">
-              <em>Select</em>
-            </MenuItem>
-            {emotions.map(emotion => {
-              return (
-                <MenuItem key={emotion.id} value={emotion.name}>
-                  {emotion.name}
-                </MenuItem>
-              );
-            })}
-          </Select>
-          <FormHelperText>Select your Mood</FormHelperText>
-        </FormControl>
-      </div>
-      <section className="verseSectionContent">
-        <div className="verseContainerCards">
-          {verses.map(verse =>
-            select ? (
-              <VerseCard key={verse.id} verse={verse} {...props} />
-            ) : null
-          )}
+      <Card className="verseList">
+            <CardContent>
+        <div>
+          <h3>How do you feel today?</h3>
+          <FormControl>
+            <Select
+              labelId="demo-simple-select-placeholder-label-label"
+              id="demo-simple-select-placeholder-label"
+              value={emotion || ""}
+              onChange={(handleFieldChange, onSelectHandler)}
+              displayEmpty
+              className={classes.selectEmpty}
+            >
+              <MenuItem value="">
+                <em>Select</em>
+              </MenuItem>
+              {emotions.map(emotion => {
+                return (
+                  <MenuItem key={emotion.id} value={emotion.name}>
+                    {emotion.name}
+                  </MenuItem>
+                );
+              })}
+            </Select>
+            <FormHelperText>Select your Mood</FormHelperText>
+          </FormControl>
         </div>
-      </section>
-      <div>
-        <span type="button" className="material-icons" onClick={onClickHandler}>
-          <IconButton aria-label="AddCircle">
-            <AddCircle />
-          </IconButton>
-        </span>
-        {isAdd ? (
-          <VerseForm
-          getVerses={getVerses}
-          emotions={emotions}
-          {...props}
-          />
+        <section className="verseSectionContent">
+          <div className="verseContainerCards">
+            {verses.map(verse =>
+              select ? (
+                <VerseCard classname="verses" key={verse.id} verse={verse} {...props} />
+              ) : null
+            )}
+          </div>
+        </section>
+        <div>
+          <CardActions>
+            <span
+              type="button"
+              className="material-icons"
+              onClick={onClickHandler}
+            >
+              <IconButton aria-label="AddCircle">
+                <AddCircle />
+              </IconButton>
+          </span>
+            </CardActions>
+          {isAdd ? (
+            <VerseForm className="verseForm" getVerses={getVerses} emotions={emotions} {...props} />
           ) : null}
-      </div>
+        </div>
+        </CardContent>
+      </Card>
     </>
   );
 };

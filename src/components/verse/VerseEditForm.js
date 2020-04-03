@@ -10,11 +10,20 @@ import Select from "@material-ui/core/Select";
 const VerseEditForm = props => {
   const [verse, setVerse] = useState({ editVerse: "" });
   const [emotions, setEmotions] = useState([]);
+  const [emotion, setEmotion] = useState("");
+
 
   const handleFieldChange = evt => {
     //   sets stateToChange equal to the verse object in state. Then targetting the id associated with the objects prop and setting it equal to the value. Then setting the verse objects state
     const stateToChange = { ...verse };
     stateToChange[evt.target.id] = evt.target.value;
+    setVerse(stateToChange);
+  };
+
+  const onSelectHandler = e => {
+    setEmotion(e.target.value);
+    const stateToChange = { ...verse };
+    stateToChange["emotion"] = e.target.value;
     setVerse(stateToChange);
   };
   
@@ -67,18 +76,24 @@ const VerseEditForm = props => {
     <>
       <form>
       <div className="formgrid">
-          <select
-          value={verse.emotion}
+        <FormControl>
+          <Select
+          labelId="demo-simple-select-placeholder-label-label"
           id="emotion"
-          onChange={handleFieldChange}>
+          value={verse.emotion || ""}
+          onChange={(handleFieldChange, onSelectHandler)}
+          displayEmpty
+          className={classes.selectEmpty}
+          >
             {emotions.map(emotion => {
               return (
-                <option key={emotion.id} id={emotion.id}>
+                <MenuItem key={emotion.id} id={"emotion"} value={emotion.name}>
                   {emotion.name}
-                </option>
-              );
+                </MenuItem>
+              )
             })}
-          </select>
+          </Select>
+        </FormControl>
         </div>
         <div className="formgrid">
           <label htmlFor="bookName">Book Name </label>

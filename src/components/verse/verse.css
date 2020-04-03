@@ -1,0 +1,9 @@
+.verseList {
+    max-width: 50%;
+    display: flex;
+    margin: auto;
+}
+
+.verseForm {
+    align-items: center;
+}
